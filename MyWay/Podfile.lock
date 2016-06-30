@@ -1,0 +1,25 @@
+PODS:
+  - Alamofire (3.4.1)
+  - Mantle (2.0.7):
+    - Mantle/extobjc (= 2.0.7)
+  - Mantle/extobjc (2.0.7)
+  - Realm (1.0.1):
+    - Realm/Headers (= 1.0.1)
+  - Realm/Headers (1.0.1)
+  - RealmSwift (1.0.1):
+    - Realm (= 1.0.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - Mantle
+  - RealmSwift
+
+SPEC CHECKSUMS:
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Mantle: bc40bb061d8c2c6fb48d5083e04d928c3b7f73d9
+  Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
+  RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
+
+PODFILE CHECKSUM: b888e394e9a7ba1b2a15da85ee00702f60373739
+
+COCOAPODS: 1.0.1
