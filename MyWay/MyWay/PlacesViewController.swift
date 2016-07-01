@@ -80,6 +80,12 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITextField
         
             // Update the cell accoring to the current place
             cell.titleLabel.text = place.title
+            
+            // make distance a bit more readable
+            let unit = (place.distance >= 1000) ? "km" : "m"
+            let readableDistance = (place.distance >= 1000) ? round(place.distance / 1000) : place.distance
+            cell.distanceLabel.text = String(format: "%.0f %@", readableDistance, unit)
+            
             if let imageUrl = NSURL(string: place.iconUrl) {
                 cell.placeImageView.af_setImageWithURL(imageUrl)
             }

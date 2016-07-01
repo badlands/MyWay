@@ -15,6 +15,9 @@ typealias PlacesCallback = (PlacesResponseModel!, NSError?) -> Void
 
 class PlacesApi {
     
+    // TODO: a method which allows sorting by distance
+    
+    
     // https://places.cit.api.here.com/places/v1/discover/search?at=52.5310%2C13.3848&q=berlin&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg
 
     static func getPlaces(request: PlacesRequestModel, callback: PlacesCallback) {

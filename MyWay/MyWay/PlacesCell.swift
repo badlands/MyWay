@@ -11,6 +11,7 @@ import UIKit
 class PlacesCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var placeImageView: UIImageView!
     
 //    override var textLabel: UILabel? {
