@@ -19,6 +19,8 @@
 		F0B570371D264CA7005B5662 /* PlacesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B570361D264CA7005B5662 /* PlacesApi.swift */; };
 		F0B570391D2659B9005B5662 /* PlacesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B570381D2659B9005B5662 /* PlacesResponseModel.swift */; };
 		F0B5703B1D26940F005B5662 /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B5703A1D26940F005B5662 /* PlaceModel.swift */; };
+		F0B5703D1D26A8C7005B5662 /* Itinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B5703C1D26A8C7005B5662 /* Itinerary.swift */; };
+		F0B5703F1D26AB83005B5662 /* ItineraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B5703E1D26AB83005B5662 /* ItineraryManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		F0B570361D264CA7005B5662 /* PlacesApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesApi.swift; sourceTree = "<group>"; };
 		F0B570381D2659B9005B5662 /* PlacesResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesResponseModel.swift; sourceTree = "<group>"; };
 		F0B5703A1D26940F005B5662 /* PlaceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
+		F0B5703C1D26A8C7005B5662 /* Itinerary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Itinerary.swift; sourceTree = "<group>"; };
+		F0B5703E1D26AB83005B5662 /* ItineraryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItineraryManager.swift; sourceTree = "<group>"; };
 		F4D138E30A2B27C623162943 /* Pods-MyWay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWay.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWay/Pods-MyWay.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +96,7 @@
 				03319ECF1D25C6340031D8FF /* PlacesRequestModel.swift */,
 				F0B570381D2659B9005B5662 /* PlacesResponseModel.swift */,
 				F0B5703A1D26940F005B5662 /* PlaceModel.swift */,
+				F0B5703C1D26A8C7005B5662 /* Itinerary.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				F0B570361D264CA7005B5662 /* PlacesApi.swift */,
+				F0B5703E1D26AB83005B5662 /* ItineraryManager.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -301,12 +307,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0B570311D264928005B5662 /* PlacesViewController.swift in Sources */,
+				F0B5703F1D26AB83005B5662 /* ItineraryManager.swift in Sources */,
 				F0B5703B1D26940F005B5662 /* PlaceModel.swift in Sources */,
 				03319EBF1D25C4AA0031D8FF /* ViewController.swift in Sources */,
 				F0B570341D264A71005B5662 /* PlacesCell.swift in Sources */,
 				03319ED01D25C6340031D8FF /* PlacesRequestModel.swift in Sources */,
 				F0B570391D2659B9005B5662 /* PlacesResponseModel.swift in Sources */,
 				F0B570371D264CA7005B5662 /* PlacesApi.swift in Sources */,
+				F0B5703D1D26A8C7005B5662 /* Itinerary.swift in Sources */,
 				03319EBD1D25C4AA0031D8FF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

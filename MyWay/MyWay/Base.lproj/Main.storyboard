@@ -107,7 +107,12 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="eJd-nS-o8f">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="search here" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" id="wra-p5-l1b">
+                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="Edit" id="ep5-Uu-Bn8">
+                            <connections>
+                                <action selector="onEditTapped:" destination="oKc-7O-4YL" id="6Bg-07-fbi"/>
+                            </connections>
+                        </barButtonItem>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="search here" textAlignment="center" minimumFontSize="17" clearButtonMode="always" id="wra-p5-l1b">
                             <rect key="frame" x="82.5" y="7" width="249" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -116,10 +121,17 @@
                                 <outlet property="delegate" destination="oKc-7O-4YL" id="TQB-1e-2ux"/>
                             </connections>
                         </textField>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="X" id="Ink-5Y-af0">
+                            <connections>
+                                <action selector="onEndSearchTapped:" destination="oKc-7O-4YL" id="lCs-vC-WjH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="endSearchButtonItem" destination="Ink-5Y-af0" id="sbP-Mb-dNu"/>
                         <outlet property="placesTableView" destination="hub-er-d8w" id="h5O-rS-Wcq"/>
+                        <outlet property="searchTextField" destination="wra-p5-l1b" id="Wek-Mb-gZf"/>
                         <segue destination="woU-fV-NEf" kind="show" identifier="places2itinerary" id="Vex-Yl-UUq">
                             <nil key="action"/>
                         </segue>

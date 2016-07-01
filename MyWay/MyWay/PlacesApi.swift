@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import Mantle
+import RealmSwift
 
 // TODO: replace with typed array
 typealias PlacesCallback = (PlacesResponseModel!, NSError?) -> Void
@@ -38,11 +39,15 @@ class PlacesApi {
                     
                     
                     let placesModel = try! MTLJSONAdapter.modelOfClass(PlacesResponseModel.self, fromJSONDictionary:response.result.value as! [NSObject : AnyObject]) as! PlacesResponseModel
-                    
                     callback(placesModel, nil)
                 }
-                
-        }
+            }
     }
+    
+//    private static func persistPlaces(places: Array<PlaceModel>) {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { 
+//            
+//        }
+//    }
     
 }
