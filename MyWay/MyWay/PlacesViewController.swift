@@ -18,18 +18,13 @@ enum PVCCellIdentifier : String {
 class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var placesTableView: UITableView!
-//        {
-//        didSet {
-//            placesTableView.showsReorderControl = true
-//        }
-//    }
     @IBOutlet weak var endSearchButtonItem: UIBarButtonItem!
     
     // TODO: move to enums, if necessary
-    let placesCellIdentifier = "placesCell"
     let itinerarySegue = "places2itinerary"
     
-    var searchResult : Array<PlaceModel> = []
+//    var searchResult : Array<PlaceModel> = []
+    var searchResult : Array<Place> = []
     lazy var itinerary : Itinerary = {
         return ItineraryManager.manager.getItinerary(1)
     }()
@@ -61,7 +56,8 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         PlacesApi.getPlaces(request) { (results, error) in
             if error == nil {
                 print("OK")
-                self.searchResult = results.places
+//                self.searchResult = results.places
+                self.searchResult = results
                 self.placesTableView.reloadData()
             }
             else {
@@ -122,8 +118,11 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: UITableView delegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if isSearching {
-            let placeModel: PlaceModel = searchResult[indexPath.row]
-            let place = Place(model: placeModel)
+//            let placeModel: PlaceModel = searchResult[indexPath.row]
+//            let place = Place(model: placeModel)
+            
+            let place: Place = searchResult[indexPath.row]
+
             print("Should add: \(place.title)")
             
             // TODO: look for consecutive duplicates
@@ -154,7 +153,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
                 itinerary.stops.removeAtIndex(indexPath.row)
             })
             placesTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
-//            placesTableView.reloadData()
         }
         
     }
@@ -187,7 +185,8 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         
         if let cell = placesTableView.dequeueReusableCellWithIdentifier(PVCCellIdentifier.SearchResult.rawValue) as? PlacesCell {
             
-            let place: PlaceModel = searchResult[indexPath.row]
+//            let place: PlaceModel = searchResult[indexPath.row]
+            let place: Place = searchResult[indexPath.row]
             
             cell.contentView.backgroundColor = UIColor.clearColor()
             

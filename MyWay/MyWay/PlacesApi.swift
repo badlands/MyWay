@@ -12,7 +12,8 @@ import Mantle
 import RealmSwift
 
 // TODO: replace with typed array
-typealias PlacesCallback = (PlacesResponseModel!, NSError?) -> Void
+//typealias PlacesCallback = (PlacesResponseModel!, NSError?) -> Void
+typealias PlacesCallback = (Array<Place>!, NSError?) -> Void
 
 class PlacesApi {
     
@@ -29,17 +30,18 @@ class PlacesApi {
             .validate()
             .responseJSON { (response) in
                 if response.result.isFailure {
-                    callback(PlacesResponseModel(), response.result.error)
+                    //callback(PlacesResponseModel(), response.result.error)
+                    callback([], response.result.error)
                 }
                 else {
-                    // TODO: map to model
-                    
-                    // ArticleListResponseModel *list = [MTLJSONAdapter modelOfClass:ArticleListResponseModel.class
-                    // fromJSONDictionary:responseDictionary error:&error];
-                    
-                    
                     let placesModel = try! MTLJSONAdapter.modelOfClass(PlacesResponseModel.self, fromJSONDictionary:response.result.value as! [NSObject : AnyObject]) as! PlacesResponseModel
-                    callback(placesModel, nil)
+//                    callback(placesModel, nil)
+                    
+                    let mappedArray = placesModel.places.map({ (model) -> Place in
+                        return Place(model: model)
+                    })
+                    callback(mappedArray, nil)
+                    
                 }
             }
     }

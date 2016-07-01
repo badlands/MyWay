@@ -12,11 +12,15 @@ import RealmSwift
 class Place : Object {
     dynamic var id : String = ""
     dynamic var title : String = ""
+    dynamic var distance : Float = 0
+    dynamic var iconUrl : String = ""
     
     convenience init(model: PlaceModel) {
         self.init()
         self.id = model.placeId
         self.title = model.title
+        self.distance = model.distance
+        self.iconUrl = model.iconUrl
     }
 }
 
