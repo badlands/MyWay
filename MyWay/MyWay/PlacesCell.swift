@@ -6,8 +6,18 @@
 //  Copyright © 2016 Marco Marengo. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class PlacesCell: UITableViewCell {
-
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var placeImageView: UIImageView!
+    
+//    override var textLabel: UILabel? {
+//        return titleLabel
+//    }
+//    
+//    override var imageView: UIImageView? {
+//        return placeImageView
+//    }
 }

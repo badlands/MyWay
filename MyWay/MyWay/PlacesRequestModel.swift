@@ -11,14 +11,17 @@ import CoreLocation
 import Mantle
 
 class PlacesRequestModel : MTLModel, MTLJSONSerializing {
-    private(set) var query : String = ""
-    private(set) var location : String = ""
+    var query : String = ""
+    var location : String = ""
+    var applicationId : String = "DemoAppId01082013GAL"
+    var applicationCode : String = "AJKnXv84fjrb0KIHawS0Tg"
     
-
     static func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
         return [
             "query" : "q",
-            "location" : "at"
+            "location" : "at",
+            "applicationId" : "app_id",
+            "applicationCode" : "app_code",
         ]
     }
 
