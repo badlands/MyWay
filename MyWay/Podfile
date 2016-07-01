@@ -8,5 +8,6 @@ target 'MyWay' do
 pod 'Alamofire'
 pod 'Mantle'
 pod 'RealmSwift'
+pod 'AlamofireImage'
 
 end
