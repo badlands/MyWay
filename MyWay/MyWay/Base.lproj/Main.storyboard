@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="572"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="placesCell" id="TgS-Ll-X7t" customClass="PlacesCell" customModule="MyWay" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="placesCell" id="TgS-Ll-X7t" customClass="PlacesCell" customModule="MyWay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TgS-Ll-X7t" id="3di-mZ-cSC">
@@ -68,7 +68,7 @@
                                             <outlet property="titleLabel" destination="RgI-fX-jHg" id="t96-ic-VID"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="itineraryCell" id="rGV-zE-oHe" customClass="PlacesCell" customModule="MyWay" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="itineraryCell" id="rGV-zE-oHe" customClass="PlacesCell" customModule="MyWay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="81" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rGV-zE-oHe" id="95U-PQ-3Jz">
@@ -173,6 +173,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="editButton" destination="ep5-Uu-Bn8" id="bdu-Tn-sUo"/>
                         <outlet property="endSearchButtonItem" destination="Ink-5Y-af0" id="sbP-Mb-dNu"/>
                         <outlet property="placesTableView" destination="hub-er-d8w" id="h5O-rS-Wcq"/>
                         <outlet property="searchTextField" destination="wra-p5-l1b" id="Wek-Mb-gZf"/>

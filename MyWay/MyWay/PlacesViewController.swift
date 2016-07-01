@@ -19,6 +19,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var placesTableView: UITableView!
     @IBOutlet weak var endSearchButtonItem: UIBarButtonItem!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     // TODO: move to enums, if necessary
     let itinerarySegue = "places2itinerary"
@@ -38,6 +39,8 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func onEditTapped(sender: AnyObject) {
         placesTableView.setEditing(!placesTableView.editing, animated: true)
+
+        editButton.title = (placesTableView.editing) ? "Done" : "Edit"
     }
     
     
@@ -71,20 +74,28 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     func activateSearchMode() {
         isSearching = true
         endSearchButtonItem.enabled = true
+        editButton.enabled = false
+        
         
         placesTableView.setEditing(false, animated: true)
+        placesTableView.backgroundColor = UIColor.lightGrayColor()
         placesTableView.reloadData()
         
-        placesTableView.backgroundColor = UIColor.lightGrayColor()
+        
     }
     
     func disableSearchMode() {
         isSearching = false
         endSearchButtonItem.enabled = false
-        placesTableView.reloadData()
+        editButton.enabled = true
+        
+        searchTextField.text = ""
+    
         searchTextField.resignFirstResponder()
         
+//        placesTableView.setEditing(true, animated: true)
         placesTableView.backgroundColor = UIColor.clearColor()
+        placesTableView.reloadData()
     }
     
     @IBAction func onEndSearchTapped(sender: AnyObject) {
@@ -188,7 +199,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
 //            let place: PlaceModel = searchResult[indexPath.row]
             let place: Place = searchResult[indexPath.row]
             
-            cell.contentView.backgroundColor = UIColor.clearColor()
+//            cell.contentView.backgroundColor = UIColor.clearColor()
             
             // Update the cell accoring to the current place
             cell.titleLabel.text = place.title
@@ -220,7 +231,13 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
             cell.titleLabel.text = stop.title
             cell.distanceLabel.text = ""
             cell.placeImageView.image = nil
-            cell.showsReorderControl = true
+            
+            cell.backgroundColor = Colors(rawValue: (indexPath.row % 4)+1)?.UIColorRepresentation
+            cell.titleLabel.textColor = UIColor.darkGrayColor()
+            
+//            cell.showsReorderControl = true
+//            cell.shouldIndentWhileEditing = false
+//            cell.editingAccessoryType = .None
             
             return cell
         }
