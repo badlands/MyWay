@@ -68,6 +68,50 @@
                                             <outlet property="titleLabel" destination="RgI-fX-jHg" id="t96-ic-VID"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="itineraryCell" id="rGV-zE-oHe" customClass="PlacesCell" customModule="MyWay" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="81" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rGV-zE-oHe" id="95U-PQ-3Jz">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y3v-HB-Rhh">
+                                                    <rect key="frame" x="8" y="16" width="47.5" height="47.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Y3v-HB-Rhh" secondAttribute="height" id="fKW-Ut-X2V"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQS-ex-rUM">
+                                                    <rect key="frame" x="65" y="0.0" width="299.5" height="79.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LD2-er-F4K">
+                                                    <rect key="frame" x="372" y="31" width="35.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Y3v-HB-Rhh" firstAttribute="leading" secondItem="95U-PQ-3Jz" secondAttribute="leadingMargin" id="5Ck-ZZ-RmD"/>
+                                                <constraint firstItem="tQS-ex-rUM" firstAttribute="centerY" secondItem="95U-PQ-3Jz" secondAttribute="centerY" id="7rc-Ad-o94"/>
+                                                <constraint firstItem="Y3v-HB-Rhh" firstAttribute="height" secondItem="95U-PQ-3Jz" secondAttribute="height" multiplier="0.6" id="Xac-bq-j6d"/>
+                                                <constraint firstItem="tQS-ex-rUM" firstAttribute="leading" secondItem="Y3v-HB-Rhh" secondAttribute="trailing" constant="10" id="bc0-hX-ZgD"/>
+                                                <constraint firstItem="LD2-er-F4K" firstAttribute="centerY" secondItem="95U-PQ-3Jz" secondAttribute="centerY" id="gPN-pw-Wml"/>
+                                                <constraint firstItem="LD2-er-F4K" firstAttribute="leading" secondItem="tQS-ex-rUM" secondAttribute="trailing" constant="8" id="ivB-PC-Ztz"/>
+                                                <constraint firstAttribute="trailing" secondItem="LD2-er-F4K" secondAttribute="trailing" constant="6" id="po5-mQ-Gjq"/>
+                                                <constraint firstItem="Y3v-HB-Rhh" firstAttribute="centerY" secondItem="95U-PQ-3Jz" secondAttribute="centerY" id="uI2-xQ-kTc"/>
+                                                <constraint firstItem="tQS-ex-rUM" firstAttribute="height" secondItem="95U-PQ-3Jz" secondAttribute="height" id="xDr-ca-krQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="distanceLabel" destination="LD2-er-F4K" id="ETE-rI-AMh"/>
+                                            <outlet property="placeImageView" destination="Y3v-HB-Rhh" id="Xsq-gD-0Dp"/>
+                                            <outlet property="titleLabel" destination="tQS-ex-rUM" id="kiR-3h-lN2"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="oKc-7O-4YL" id="PfM-zz-Qen"/>
@@ -107,7 +151,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="eJd-nS-o8f">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="Edit" id="ep5-Uu-Bn8">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="ep5-Uu-Bn8">
                             <connections>
                                 <action selector="onEditTapped:" destination="oKc-7O-4YL" id="6Bg-07-fbi"/>
                             </connections>

@@ -16,7 +16,19 @@ class ItineraryManager {
         return _manager
     }
     
-    func reset() {
+    static func sanityCheck() {
+        let realm = try! Realm()
+        print("Number of places: \(realm.objects(Place.self).count)")
+        
+        let itineraries = realm.objects(Itinerary.self)
+        print("Number of itineraries: \(itineraries.count)")
+        itineraries.forEach { (itinerary) in
+            print(".. itinerary \(itinerary.id): \(itinerary.stops.count) stops")
+        }
+    
+    }
+    
+    static func reset() {
         let realm = try! Realm()
         
         try! realm.write({ 

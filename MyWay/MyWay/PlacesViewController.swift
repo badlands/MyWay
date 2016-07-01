@@ -9,10 +9,20 @@
 import UIKit
 import AlamofireImage
 import RealmSwift
+    
+enum PVCCellIdentifier : String {
+    case SearchResult = "placesCell"
+    case Itinerary = "itineraryCell"
+}
 
 class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var placesTableView: UITableView!
+//        {
+//        didSet {
+//            placesTableView.showsReorderControl = true
+//        }
+//    }
     @IBOutlet weak var endSearchButtonItem: UIBarButtonItem!
     
     // TODO: move to enums, if necessary
@@ -127,12 +137,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if isSearching {
-            return false
-        }
-        else {
-            return true
-        }
+        return !isSearching
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -154,6 +159,20 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return !isSearching
+    }
+    
+    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        
+        // Update the model
+        let realm = try! Realm()
+        try! realm.write({
+            itinerary.stops.move(from: sourceIndexPath.row, to: destinationIndexPath.row)
+        })
+
+    }
+    
     // MARK: UITableView data source
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {        
         if isSearching {
@@ -166,7 +185,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func searchCellForRowAtIndexPath(indexPath: NSIndexPath) -> PlacesCell {
         
-        if let cell = placesTableView.dequeueReusableCellWithIdentifier(placesCellIdentifier) as? PlacesCell {
+        if let cell = placesTableView.dequeueReusableCellWithIdentifier(PVCCellIdentifier.SearchResult.rawValue) as? PlacesCell {
             
             let place: PlaceModel = searchResult[indexPath.row]
             
@@ -196,12 +215,13 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func itineraryCellForRowAtIndexPath(indexPath: NSIndexPath) -> PlacesCell {
         
-        if let cell = placesTableView.dequeueReusableCellWithIdentifier(placesCellIdentifier) as? PlacesCell {
+        if let cell = placesTableView.dequeueReusableCellWithIdentifier(PVCCellIdentifier.Itinerary.rawValue) as? PlacesCell {
             
             let stop = itinerary.stops[indexPath.row]
             cell.titleLabel.text = stop.title
             cell.distanceLabel.text = ""
             cell.placeImageView.image = nil
+            cell.showsReorderControl = true
             
             return cell
         }
@@ -220,9 +240,5 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // MARK: UIViewController
-    override func viewDidLoad() {
-//        itinerary = ItineraryManager.manager.getItinerary(1)
-        
-//        placesTableView..
-    }
+
 }
