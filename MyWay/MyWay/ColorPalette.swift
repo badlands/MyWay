@@ -24,7 +24,9 @@ enum Colors : Int {
             return UIColor(red: 116/255, green: 239/255, blue: 225/255, alpha: 0.6)
         }
     }
-    
+}
+
+class ColorPalette {
     static func randomColor() -> UIColor {
         let rand = Int(arc4random_uniform(4) + 1)
         
