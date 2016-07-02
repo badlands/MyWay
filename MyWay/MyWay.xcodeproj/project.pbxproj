@@ -14,6 +14,7 @@
 		03319EC71D25C4AA0031D8FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03319EC51D25C4AA0031D8FF /* LaunchScreen.storyboard */; };
 		03319ED01D25C6340031D8FF /* PlacesRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03319ECF1D25C6340031D8FF /* PlacesRequestModel.swift */; };
 		03319ED31D271A7B0031D8FF /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03319ED21D271A7B0031D8FF /* ColorPalette.swift */; };
+		03E66C8B1D28549A00957762 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E66C8A1D28549A00957762 /* RouteViewController.swift */; };
 		654E006D286A7D94189816EB /* Pods_MyWay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24E5F1477B42B97613A868D /* Pods_MyWay.framework */; };
 		F0B570311D264928005B5662 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B570301D264928005B5662 /* PlacesViewController.swift */; };
 		F0B570341D264A71005B5662 /* PlacesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B570331D264A71005B5662 /* PlacesCell.swift */; };
@@ -34,6 +35,7 @@
 		03319EC81D25C4AA0031D8FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03319ECF1D25C6340031D8FF /* PlacesRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesRequestModel.swift; sourceTree = "<group>"; };
 		03319ED21D271A7B0031D8FF /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		03E66C8A1D28549A00957762 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		B24E5F1477B42B97613A868D /* Pods_MyWay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3654A6A1688E91FBD1B9E45 /* Pods-MyWay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWay/Pods-MyWay.debug.xcconfig"; sourceTree = "<group>"; };
 		F0B570301D264928005B5662 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
@@ -79,12 +81,12 @@
 		03319EBB1D25C4AA0031D8FF /* MyWay */ = {
 			isa = PBXGroup;
 			children = (
-				03319ED11D271A710031D8FF /* Style */,
 				03319EBC1D25C4AA0031D8FF /* AppDelegate.swift */,
 				03319EC01D25C4AA0031D8FF /* Main.storyboard */,
 				F0B570351D264C6A005B5662 /* API */,
 				03319ECE1D25C5E10031D8FF /* Model */,
 				F0B570321D264A51005B5662 /* UI */,
+				03319ED11D271A710031D8FF /* Style */,
 				03319EBE1D25C4AA0031D8FF /* ViewController.swift */,
 				03319EC31D25C4AA0031D8FF /* Assets.xcassets */,
 				03319EC51D25C4AA0031D8FF /* LaunchScreen.storyboard */,
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				F0B570301D264928005B5662 /* PlacesViewController.swift */,
+				03E66C8A1D28549A00957762 /* RouteViewController.swift */,
 				F0B570331D264A71005B5662 /* PlacesCell.swift */,
 			);
 			name = UI;
@@ -319,6 +322,7 @@
 			files = (
 				F0B570311D264928005B5662 /* PlacesViewController.swift in Sources */,
 				F0B5703F1D26AB83005B5662 /* ItineraryManager.swift in Sources */,
+				03E66C8B1D28549A00957762 /* RouteViewController.swift in Sources */,
 				F0B5703B1D26940F005B5662 /* PlaceModel.swift in Sources */,
 				03319EBF1D25C4AA0031D8FF /* ViewController.swift in Sources */,
 				F0B570341D264A71005B5662 /* PlacesCell.swift in Sources */,

@@ -256,5 +256,11 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // MARK: UIViewController
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == itinerarySegue {
+            let vc = segue.destinationViewController as! RouteViewController
+            vc.itinerary = itinerary
+        }
+    }
 
 }

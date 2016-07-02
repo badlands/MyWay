@@ -205,10 +205,10 @@
             </objects>
             <point key="canvasLocation" x="318" y="383"/>
         </scene>
-        <!--View Controller-->
+        <!--Route View Controller-->
         <scene sceneID="uG4-FC-mGv">
             <objects>
-                <viewController id="woU-fV-NEf" sceneMemberID="viewController">
+                <viewController id="woU-fV-NEf" customClass="RouteViewController" customModule="MyWay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KlC-R5-pAk"/>
                         <viewControllerLayoutGuide type="bottom" id="n2K-pz-c8j"/>
@@ -216,8 +216,22 @@
                     <view key="view" contentMode="scaleToFill" id="XXc-eD-92r">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3br-Zl-eQT">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3br-Zl-eQT" firstAttribute="leading" secondItem="XXc-eD-92r" secondAttribute="leading" id="MyS-iN-EeO"/>
+                            <constraint firstItem="n2K-pz-c8j" firstAttribute="top" secondItem="3br-Zl-eQT" secondAttribute="bottom" id="VZE-D0-y5E"/>
+                            <constraint firstAttribute="trailing" secondItem="3br-Zl-eQT" secondAttribute="trailing" id="dpG-qn-xeN"/>
+                            <constraint firstItem="3br-Zl-eQT" firstAttribute="top" secondItem="KlC-R5-pAk" secondAttribute="bottom" id="xfS-u9-OpP"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="3br-Zl-eQT" id="9z9-M0-5CQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HoC-4Z-PTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
