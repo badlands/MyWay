@@ -8,12 +8,14 @@
 
 import Foundation
 import RealmSwift
+import CoreLocation
 
 class Place : Object {
     dynamic var id : String = ""
     dynamic var title : String = ""
     dynamic var distance : Float = 0
     dynamic var iconUrl : String = ""
+    dynamic var location : Location?
     
     convenience init(model: PlaceModel) {
         self.init()
@@ -21,7 +23,19 @@ class Place : Object {
         self.title = model.title
         self.distance = model.distance
         self.iconUrl = model.iconUrl
+        self.location = Location(coordinates: model.position)
     }
+    
+//    var coordinates : CLLocationCoordinate2D {
+//        if position.count == 2 {
+//            return CLLocationCoordinate2D(latitude: position[0] as! Double, longitude: position[1] as! Double)
+//        }
+//        else {
+//            // TODO: better error handling
+//            // currently returns null island
+//            return CLLocationCoordinate2D(latitude: 0, longitude: 0)
+//        }
+//    }
 }
 
 class Itinerary : Object {

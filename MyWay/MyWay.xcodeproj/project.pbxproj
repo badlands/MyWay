@@ -15,6 +15,9 @@
 		03319ED01D25C6340031D8FF /* PlacesRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03319ECF1D25C6340031D8FF /* PlacesRequestModel.swift */; };
 		03319ED31D271A7B0031D8FF /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03319ED21D271A7B0031D8FF /* ColorPalette.swift */; };
 		03E66C8B1D28549A00957762 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E66C8A1D28549A00957762 /* RouteViewController.swift */; };
+		03E66C8D1D29308200957762 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E66C8C1D29308200957762 /* Location.swift */; };
+		03E66C8F1D29362A00957762 /* PlaceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E66C8E1D29362A00957762 /* PlaceDetailsView.swift */; };
+		03E66C911D2938F000957762 /* RouteDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E66C901D2938F000957762 /* RouteDetailsView.swift */; };
 		654E006D286A7D94189816EB /* Pods_MyWay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24E5F1477B42B97613A868D /* Pods_MyWay.framework */; };
 		F0B570311D264928005B5662 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B570301D264928005B5662 /* PlacesViewController.swift */; };
 		F0B570341D264A71005B5662 /* PlacesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B570331D264A71005B5662 /* PlacesCell.swift */; };
@@ -36,6 +39,9 @@
 		03319ECF1D25C6340031D8FF /* PlacesRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesRequestModel.swift; sourceTree = "<group>"; };
 		03319ED21D271A7B0031D8FF /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		03E66C8A1D28549A00957762 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
+		03E66C8C1D29308200957762 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		03E66C8E1D29362A00957762 /* PlaceDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsView.swift; sourceTree = "<group>"; };
+		03E66C901D2938F000957762 /* RouteDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetailsView.swift; sourceTree = "<group>"; };
 		B24E5F1477B42B97613A868D /* Pods_MyWay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3654A6A1688E91FBD1B9E45 /* Pods-MyWay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWay/Pods-MyWay.debug.xcconfig"; sourceTree = "<group>"; };
 		F0B570301D264928005B5662 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +108,7 @@
 				F0B570381D2659B9005B5662 /* PlacesResponseModel.swift */,
 				F0B5703A1D26940F005B5662 /* PlaceModel.swift */,
 				F0B5703C1D26A8C7005B5662 /* Itinerary.swift */,
+				03E66C8C1D29308200957762 /* Location.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -137,6 +144,8 @@
 				F0B570301D264928005B5662 /* PlacesViewController.swift */,
 				03E66C8A1D28549A00957762 /* RouteViewController.swift */,
 				F0B570331D264A71005B5662 /* PlacesCell.swift */,
+				03E66C8E1D29362A00957762 /* PlaceDetailsView.swift */,
+				03E66C901D2938F000957762 /* RouteDetailsView.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -326,10 +335,13 @@
 				F0B5703B1D26940F005B5662 /* PlaceModel.swift in Sources */,
 				03319EBF1D25C4AA0031D8FF /* ViewController.swift in Sources */,
 				F0B570341D264A71005B5662 /* PlacesCell.swift in Sources */,
+				03E66C8D1D29308200957762 /* Location.swift in Sources */,
+				03E66C8F1D29362A00957762 /* PlaceDetailsView.swift in Sources */,
 				03319ED01D25C6340031D8FF /* PlacesRequestModel.swift in Sources */,
 				F0B570391D2659B9005B5662 /* PlacesResponseModel.swift in Sources */,
 				F0B570371D264CA7005B5662 /* PlacesApi.swift in Sources */,
 				F0B5703D1D26A8C7005B5662 /* Itinerary.swift in Sources */,
+				03E66C911D2938F000957762 /* RouteDetailsView.swift in Sources */,
 				03319EBD1D25C4AA0031D8FF /* AppDelegate.swift in Sources */,
 				03319ED31D271A7B0031D8FF /* ColorPalette.swift in Sources */,
 			);
