@@ -25,17 +25,6 @@ class Place : Object {
         self.iconUrl = model.iconUrl
         self.location = Location(coordinates: model.position)
     }
-    
-//    var coordinates : CLLocationCoordinate2D {
-//        if position.count == 2 {
-//            return CLLocationCoordinate2D(latitude: position[0] as! Double, longitude: position[1] as! Double)
-//        }
-//        else {
-//            // TODO: better error handling
-//            // currently returns null island
-//            return CLLocationCoordinate2D(latitude: 0, longitude: 0)
-//        }
-//    }
 }
 
 class Itinerary : Object {
