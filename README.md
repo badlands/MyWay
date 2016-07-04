@@ -15,6 +15,7 @@
  ```
 cd PROJECT_FOLDER  
 pod install
+open MyWay.xcworkspace
 ```
 
 
