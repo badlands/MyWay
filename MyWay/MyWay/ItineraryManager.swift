@@ -46,13 +46,13 @@ class ItineraryManager {
             let itinerary = Itinerary()
             itinerary.id = 1
             
-            // Add some stops...
-            for i in 1...3 {
-                let s = Place()
-                s.title = "Place \(i)"
-                itinerary.stops.append(s)
-            }
-            //
+//            // Add some stops...
+//            for i in 1...3 {
+//                let s = Place()
+//                s.title = "Place \(i)"
+//                itinerary.stops.append(s)
+//            }
+//            //
             
             try! realm.write {
                 realm.add(itinerary)

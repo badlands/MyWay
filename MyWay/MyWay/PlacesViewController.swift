@@ -9,13 +9,14 @@
 import UIKit
 import AlamofireImage
 import RealmSwift
+import CoreLocation
     
 enum PVCCellIdentifier : String {
     case SearchResult = "placesCell"
     case Itinerary = "itineraryCell"
 }
 
-class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var placesTableView: UITableView!
     @IBOutlet weak var endSearchButtonItem: UIBarButtonItem!
@@ -31,6 +32,9 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     }()
     
     var isSearching : Bool = false
+    
+    var locationManager : CLLocationManager = CLLocationManager()
+    var userCoordinates : CLLocationCoordinate2D?
     
     // MARK: IBActions
     @IBAction func onShowItineraryTapped() {
@@ -54,7 +58,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         // Create the request
         let request = PlacesRequestModel()
         request.query = query
-        request.location = "52.5310,13.3848"
+        request.location = userCoordinates != nil ? "\(userCoordinates!.latitude),\(userCoordinates!.longitude)" : "52.5310,13.3848"
         
         PlacesApi.getPlaces(request) { (results, error) in
             if error == nil {
@@ -178,8 +182,8 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         let realm = try! Realm()
         try! realm.write({
             itinerary.stops.move(from: sourceIndexPath.row, to: destinationIndexPath.row)
+            placesTableView.reloadData()
         })
-
     }
     
     // MARK: UITableView data source
@@ -193,13 +197,8 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func searchCellForRowAtIndexPath(indexPath: NSIndexPath) -> PlacesCell {
-        
         if let cell = placesTableView.dequeueReusableCellWithIdentifier(PVCCellIdentifier.SearchResult.rawValue) as? PlacesCell {
-            
-//            let place: PlaceModel = searchResult[indexPath.row]
             let place: Place = searchResult[indexPath.row]
-            
-//            cell.contentView.backgroundColor = UIColor.clearColor()
             
             // Update the cell accoring to the current place
             cell.titleLabel.text = place.title
@@ -230,15 +229,12 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
             let stop = itinerary.stops[indexPath.row]
             cell.titleLabel.text = stop.title
             cell.distanceLabel.text = ""
-            cell.placeImageView.image = nil
+            cell.placeImageView.image = indexPath.row == 0 ? UIImage(named: "start") : nil
             
             cell.backgroundColor = Colors(rawValue: (indexPath.row % 4)+1)?.UIColorRepresentation
-            cell.titleLabel.textColor = UIColor.darkGrayColor()
-            
-//            cell.showsReorderControl = true
-//            cell.shouldIndentWhileEditing = false
-//            cell.editingAccessoryType = .None
-            
+            cell.titleLabel.textColor = UIColor.whiteColor()
+            cell.titleLabel.font = UIFont.boldSystemFontOfSize(16.0)
+
             return cell
         }
         else {
@@ -255,12 +251,58 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    // MARK: CLLocationManagerDelegate
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .AuthorizedWhenInUse || status == .AuthorizedAlways {
+            locationManager.startUpdatingLocation()
+        }
+        else {
+            print("locationManager error?")
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+    
+        print("got location")
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("didUpdateLocations")
+        if locations.count > 0 {
+            userCoordinates = locations.first!.coordinate
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("locationManager:didFailWithError: \(error.description)")
+    }
+    
     // MARK: UIViewController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == itinerarySegue {
             let vc = segue.destinationViewController as! RouteViewController
             vc.itinerary = itinerary
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManager.distanceFilter = 500
+        if CLLocationManager.authorizationStatus() != .AuthorizedWhenInUse {
+            locationManager.requestWhenInUseAuthorization()
+        }
+        else {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        locationManager.stopUpdatingLocation()
     }
 
 }

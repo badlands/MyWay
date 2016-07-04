@@ -24,13 +24,10 @@ class RouteRequestModel: MTLModel, MTLJSONSerializing {
         ]
     }
     
-    func extendedJSON() -> [NSObject : AnyObject] {
-        var dict = try! MTLJSONAdapter.JSONDictionaryFromModel(self)
-        
-        for wp in 0..<waypoints!.count {
-            
-        }
-        
-        return dict
+    convenience init(itinerary: Itinerary) {
+        self.init()
+        self.waypoints = itinerary.stops.map({ (place) -> String in
+            return "\(place.location!.coordinateString)"
+        })
     }
 }

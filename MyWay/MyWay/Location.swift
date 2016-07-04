@@ -25,4 +25,8 @@ class Location: Object {
             latitude: latitude,
             longitude: longitude)
     }
+    
+    var coordinateString : String {
+        return "\(latitude),\(longitude)"
+    }
 }

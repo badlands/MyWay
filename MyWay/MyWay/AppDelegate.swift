@@ -18,24 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ItineraryManager.sanityCheck()
         
-        // TEST
-        // Create the request
-        let request = RouteRequestModel()
-        request.waypoints = [ "52.5,13.4", "52.6,13.5" ]
-                
-        PlacesApi.getRoute(request) { (results, error) in
-            if error == nil {
-                print("OK")
-            }
-            else {
-                // handle error
-                print(error)
-            }
-            
-        }
-        
-        //
-        
         return true
     }
 

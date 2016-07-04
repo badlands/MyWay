@@ -9,6 +9,22 @@
 import UIKit
 import MapKit
 
+/***
+ This extension provides a method which removes HTML tags from a String
+ */
+extension String {
+    func stringByRemovingHTMLTags() -> String {
+        do {
+            let regex:NSRegularExpression  = try NSRegularExpression( pattern: "<.*?>", options: NSRegularExpressionOptions.CaseInsensitive)
+            let range = NSMakeRange(0, self.characters.count)
+            return regex.stringByReplacingMatchesInString(self, options: NSMatchingOptions(), range:range , withTemplate: "")
+        }
+        catch {
+            return self
+        }
+    }
+}
+
 class RouteViewController : UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
     let routeCellIdentifier = "routeCell"
@@ -27,20 +43,18 @@ class RouteViewController : UIViewController, MKMapViewDelegate, UITableViewDele
     
     @IBOutlet weak var infoContainerConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var routeSummaryLabel: UILabel!
+    
     var itinerary : Itinerary?
+    var route : RouteModel?
     var mapAnnotations : [MKPointAnnotation]?
     
-    func showItineraryDetail() {
-//        itinerary?.stops.forEach({ (place) in
-//            print("adding " + place.title + " \(place.distance)")
-//            
-//            let annotation = MKPointAnnotation()
-//            annotation.title = place.title
-//            annotation.coordinate = place.location!.coordinate
-//            mapView.addAnnotation(annotation)
-//        })
+    func updateMapWithItinerary(itinerary: Itinerary) {
+        // Clean the map
+        mapView.removeAnnotations(mapView.annotations)
         
-        mapAnnotations = itinerary?.stops.map({ (place) -> MKPointAnnotation in
+        // Create and add annotations
+        mapAnnotations = itinerary.stops.map({ (place) -> MKPointAnnotation in
             print("adding " + place.title + " \(place.distance)")
 
             let annotation = MKPointAnnotation()
@@ -49,6 +63,23 @@ class RouteViewController : UIViewController, MKMapViewDelegate, UITableViewDele
             return annotation
         })
         mapView.addAnnotations(mapAnnotations!)
+    }
+    
+    func updateUIWithRoute(route: RouteModel) {
+        routeTableView.reloadData()
+        
+        routeSummaryLabel.text = "The trip takes \(route.travelTime)s. You will travel for \(route.distance)m"
+        
+        mapView.addOverlay(route.polyline, level: .AboveRoads)
+        let rect = route.polyline.boundingMapRect
+        
+        // set appropriate region
+        mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+        
+        // focus on the starting point
+        if mapAnnotations != nil && mapAnnotations?.count > 0 {
+            mapView.centerCoordinate = mapAnnotations![0].coordinate
+        }
     }
     
     func showPlaceDetailsForAnnotationAtIndex(index: Int) {
@@ -65,7 +96,7 @@ class RouteViewController : UIViewController, MKMapViewDelegate, UITableViewDele
 //        }
     }
     
-    func toggleRouteDetails() {
+    @IBAction func toggleRouteDetails() {
         if isRouteContainerMaximized {
             hideRouteDetails()
         }
@@ -92,28 +123,63 @@ class RouteViewController : UIViewController, MKMapViewDelegate, UITableViewDele
         isRouteContainerMaximized = false
     }
     
+    func refreshData() {
+        // Create the request
+        if itinerary != nil {
+            let request = RouteRequestModel(itinerary: itinerary!)
+            
+            PlacesApi.getRoute(request) { (results, error) in
+                if error == nil && results.routes.count > 0 {
+                    self.route = results.routes.first
+                    self.updateUIWithRoute(self.route!)
+                }
+                else {
+                    // handle error
+                    print(error)
+                }
+                
+            }
+        }
+    }
+    
     // MARK: UITableView delegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if route != nil {
+            return route!.legs[section].maneuvers.count
+        }
+        else {
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = routeTableView.dequeueReusableCellWithIdentifier(routeCellIdentifier) as! PlacesCell
+        
+        if route != nil {
+            let leg = route!.legs[indexPath.section]
+            
+            cell.titleLabel.text = leg.maneuvers[indexPath.row].instruction.stringByRemovingHTMLTags()
+            cell.distanceLabel.text = "\(leg.maneuvers[indexPath.row].length)m"
+        }
+        
         return cell
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80
+        return route != nil ? 60 : 0
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return route != nil ? route!.legs.count : 0
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let v = UIView()
-        v.backgroundColor = UIColor.redColor()
+        let leg = route!.legs[section]
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(RouteViewController.toggleRouteDetails ))
-        v.addGestureRecognizer(tapGesture)
-        
-        return v
+        let cell : HeaderCell = routeTableView.dequeueReusableCellWithIdentifier("headerCell") as! HeaderCell
+        cell.mainLabel.text = "From \(leg.startPlace) to \(leg.endPlace)"
+        cell.detailLabel.text = "\(leg.maneuvers.count) maneuvers"
+        return cell
     }
     
     // MARK: MapView delegate
@@ -132,11 +198,24 @@ class RouteViewController : UIViewController, MKMapViewDelegate, UITableViewDele
         hidePlaceDetails()
     }
     
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.redColor()
+        renderer.lineWidth = 4.0
+        
+        return renderer
+    }
+
+    
     // MARK: UIViewController
+    override func viewDidLoad() {
+        self.title = "My itinerary"
+    }
     
     override func viewWillAppear(animated: Bool) {
         if itinerary != nil {
-            showItineraryDetail()
+            updateMapWithItinerary(itinerary!)
+            refreshData()
         }
     }
 }
