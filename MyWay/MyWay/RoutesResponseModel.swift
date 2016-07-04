@@ -10,6 +10,9 @@ import Mantle
 import MapKit
 import CoreLocation
 
+/**
+ This class defines the model of a Maneuver
+ */
 class ManeuverModel : MTLModel, MTLJSONSerializing {
     dynamic var instruction: String = ""
     dynamic var length: Int = 0
@@ -22,6 +25,9 @@ class ManeuverModel : MTLModel, MTLJSONSerializing {
     }
 }
 
+/**
+ This class defines the model of a Leg
+ */
 class LegModel : MTLModel, MTLJSONSerializing {
     dynamic var maneuvers: Array<ManeuverModel> = []
     
@@ -42,6 +48,9 @@ class LegModel : MTLModel, MTLJSONSerializing {
     }
 }
 
+/**
+ This class defines the model of a Route
+ */
 class RouteModel: MTLModel, MTLJSONSerializing {
     dynamic var shape : [String] = []
     dynamic var legs : Array<LegModel> = []
@@ -76,6 +85,9 @@ class RouteModel: MTLModel, MTLJSONSerializing {
     }
 }
 
+/**
+ This class defines the model of a Route response (from the HERE API server)
+ */
 class RoutesResponseModel: MTLModel, MTLJSONSerializing {
     dynamic var routes : Array<RouteModel> = []
     

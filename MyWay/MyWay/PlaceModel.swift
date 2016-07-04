@@ -9,6 +9,9 @@
 import Foundation
 import Mantle
 
+/**
+ This class defines the model of a Place
+ */
 class PlaceModel : MTLModel, MTLJSONSerializing {
     var title : String = ""
     var distance : Float = 0

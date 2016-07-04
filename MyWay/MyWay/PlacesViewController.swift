@@ -25,14 +25,12 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     // TODO: move to enums, if necessary
     let itinerarySegue = "places2itinerary"
     
-//    var searchResult : Array<PlaceModel> = []
     var searchResult : Array<Place> = []
     lazy var itinerary : Itinerary = {
         return ItineraryManager.manager.getItinerary(1)
     }()
     
     var isSearching : Bool = false
-    
     var locationManager : CLLocationManager = CLLocationManager()
     var userCoordinates : CLLocationCoordinate2D?
     
@@ -46,8 +44,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
 
         editButton.title = (placesTableView.editing) ? "Done" : "Edit"
     }
-    
-    
+        
     // MARK: Internal methods
     func refreshPlaces(query: String) {
         // TODO: give UI feedback for this case
@@ -268,7 +265,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("didUpdateLocations")
         if locations.count > 0 {
             userCoordinates = locations.first!.coordinate
         }

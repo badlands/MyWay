@@ -10,6 +10,9 @@ import UIKit
 import CoreLocation
 import Mantle
 
+/**
+ This class defines the model of a Place Request
+ */
 class PlacesRequestModel : MTLModel, MTLJSONSerializing {
     var query : String = ""
     var location : String = ""

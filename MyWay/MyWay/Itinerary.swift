@@ -10,6 +10,22 @@ import Foundation
 import RealmSwift
 import CoreLocation
 
+/**
+ This class defines a Itinerary (persisted by Realm)
+ */
+class Itinerary : Object {
+    dynamic var id : Int = 0
+    let stops = List<Place>()
+    
+    // MARK: Realm
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+}
+
+/**
+ This class defines a Place (persisted by Realm)
+ */
 class Place : Object {
     dynamic var id : String = ""
     dynamic var title : String = ""
@@ -27,19 +43,4 @@ class Place : Object {
     }
 }
 
-class Itinerary : Object {
-    dynamic var id : Int = 0
-    let stops = List<Place>()
-       
-    // MARK: Realm
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-    
-    
-//    convenience init(model: PlaceModel) {
-//        init()
-//        
-//        self.stops = model.
-//    }
-}
+

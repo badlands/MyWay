@@ -11,8 +11,6 @@ import Alamofire
 import Mantle
 import RealmSwift
 
-// TODO: replace with typed array
-//typealias PlacesCallback = (PlacesResponseModel!, NSError?) -> Void
 typealias PlacesCallback = (Array<Place>!, NSError?) -> Void
 typealias RoutesCallback = (RoutesResponseModel!, NSError?) -> Void
 
@@ -28,9 +26,10 @@ class PlacesApi {
     
     // TODO: a method which allows sorting by distance
     
-    
-    // https://places.cit.api.here.com/places/v1/discover/search?at=52.5310%2C13.3848&q=berlin&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg
-
+    /***
+     Retrieve a list of places from the HERE API service
+    */
+    // Example: https://places.cit.api.here.com/places/v1/discover/search?at=52.5310%2C13.3848&q=berlin&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg
     static func getPlaces(request: PlacesRequestModel, callback: PlacesCallback) {
         let url = "https://places.cit.api.here.com/places/v1/discover/search"
         
@@ -55,7 +54,10 @@ class PlacesApi {
             }
     }
     
-    // https://route.cit.api.here.com/routing/7.2/calculateroute.json?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg&waypoint0=geo!52.5,13.4&waypoint1=geo!52.5,13.45&mode=fastest;car;traffic:disabled&routeAttributes=sh,wp
+    /***
+     Retrieve a route from the HERE API service
+     */
+    // Example: https://route.cit.api.here.com/routing/7.2/calculateroute.json?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg&waypoint0=geo!52.5,13.4&waypoint1=geo!52.5,13.45&mode=fastest;car;traffic:disabled&routeAttributes=sh,wp
     static func getRoute(request: RouteRequestModel, callback: RoutesCallback) {
         let url = "https://route.cit.api.here.com/routing/7.2/calculateroute.json"
         
@@ -81,15 +83,7 @@ class PlacesApi {
                 }
                 else {
                     let routesModel = try! MTLJSONAdapter.modelOfClass(RoutesResponseModel.self, fromJSONDictionary:response.result.value as! [NSObject : AnyObject]) as! RoutesResponseModel
-                    
-//                    let mappedArray = placesModel.places.map({ (model) -> Place in
-//                        return Place(model: model)
-//                    })
-//                    callback(mappedArray, nil)
-                    
-                    // TODO: map to Array<Route> ?
-                    callback(routesModel, nil)
-                    
+                    callback(routesModel, nil)                    
                 }
         }
     }

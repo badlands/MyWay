@@ -8,6 +8,9 @@
 
 import Mantle
 
+/**
+ This class defines the model of a Route request (towards the HERE API server)
+ */
 class RouteRequestModel: MTLModel, MTLJSONSerializing {
     var applicationId : String = "DemoAppId01082013GAL"
     var applicationCode : String = "AJKnXv84fjrb0KIHawS0Tg"
